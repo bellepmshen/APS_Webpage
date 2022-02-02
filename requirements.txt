@@ -1,5 +1,5 @@
 # Web Server Requirements
-# hello
+#
 # *Required to run web app
 flask >= 2.0.0
 gunicorn >= 20.1.0
