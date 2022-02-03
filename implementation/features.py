@@ -288,22 +288,6 @@ class Feature_Selection:
         except Exception as err:
             print(err)               
 
-# if __name__ == '__main__':
-    
-#     cols_selec = Feature_Selection(
-#         '/Users/belleshen/Documents/VS_Code/Project/AirPressureSystemFailureDetection/Data/archive/', 
-#         'aps_failure_training_set.csv'
-#         )
-#     data = cols_selec.read_files()
-#     data = cols_selec.replace_data()
-#     data = cols_selec.make_numerical()
-#     cat_cols, nu_cols = cols_selec.get_cat_nu_cols()
-#     high_colinearity = cols_selec.high_colinearity_cols()
-#     no_colinearity, high_colinearity = cols_selec.no_colinearity_cols()
-#     data_scaled_nu = cols_selec.scaling()
-#     pvalues_box = cols_selec.dimension_reduced()
-#     candidate_cols = cols_selec.get_candidate_nu_cols()
-#     main_cols, candidate_cols_new = cols_selec.final_columns()
     
 
 

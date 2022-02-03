@@ -1,10 +1,9 @@
-from features import *
-from logist import *
-
-
+from features import Feature_Selection
+from logist import Logistic_Prep, Logistic_Modeling
 
 if __name__ == '__main__':
 
+    # feature selections:
     cols_selec = Feature_Selection(
         '/Users/belleshen/Documents/VS_Code/Project/'
         'AirPressureSystemFailureDetection/Data/archive/', 
