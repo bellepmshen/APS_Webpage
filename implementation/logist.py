@@ -1,12 +1,11 @@
 import pandas as pd
+import matplotlib.pyplot as plt
 from sklearn.model_selection import train_test_split
 from imblearn.over_sampling import SMOTENC
 from sklearn.preprocessing import MinMaxScaler
 from sklearn.linear_model import LogisticRegression
 from sklearn.metrics import (plot_roc_curve, precision_score, recall_score, 
                              confusion_matrix, accuracy_score)
-import matplotlib.pyplot as plt
-from features import Feature_Selection
 
 class Logistic_Prep:
     """This class is for building a Logistic Regression model."""
