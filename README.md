@@ -6,6 +6,7 @@ This repository is currently building and the following files are ready.
 
     a. features.py: This file is for feature selections.
     b. logist.py: This file is for building a Logistic Regression Model.
-    c. main.py: This file is for running the main code.
+    c. tree_models.py: This file is for building Gradient Boosting & Random Forest Models.
+    d. main.py: This file is for running the main code.
 
 More files will be coming soon....
