@@ -1,3 +1,4 @@
+import pickle
 import pandas as pd
 import matplotlib.pyplot as plt
 from sklearn.model_selection import train_test_split
@@ -65,7 +66,6 @@ class Logistic_Prep:
     def combined(self):
         """This function is for x and y combined.
         
-        Returns
         -------
         [dataframe]
             [return train_combined & test_combined]
@@ -131,6 +131,11 @@ class Logistic_Prep:
             
             self.candidate_cols_new_2 = candidate_cols_new_2
             
+            # save candidate_cols_new_2:
+            
+            with open('candidate_cols_new_2.pickle', 'ab') as f:
+                pickle.dump(candidate_cols_new_2, f)
+            
             return self.train_combined, self.test_combined, self.candidate_cols_new_2
         
         except Exception as err:
@@ -143,7 +148,7 @@ class Logistic_Prep:
         Returns
         -------
         [dataframe]
-            [scaled train & test numerical column dataframes]
+            [scaled train & test numerical column dataframes and scaler]
         """
         try:
             scaler = MinMaxScaler()
@@ -162,6 +167,11 @@ class Logistic_Prep:
             
             self.train_scaled_df = train_scaled_df
             self.test_scaled_df = test_scaled_df
+            
+            # save the scaler as a pickle:
+            
+            with open('scaler.pickle', 'ab') as f:
+                pickle.dump(scaler, f)
             
             return self.train_scaled_df, self.test_scaled_df
         
@@ -213,7 +223,11 @@ class Logistic_Prep:
             self.test_dummies.drop(
                 self.candidate_cols_new_2, axis = 1, inplace = True
                 )
-            
+
+            # save train_dummies feature names for alignment on actual test data:
+            with open('train_dummies_t.pickle', 'ab') as f:
+                pickle.dump(self.train_dummies.columns, f)      
+                     
             # merge scaled df & dummies:
 
             train_combined_1 = self.train_scaled_df.merge(
@@ -270,6 +284,10 @@ class Logistic_Modeling:
             
             self.model = model
             
+            # save model as a pickle:
+            with open('logistic_model.pickle', 'ab') as f:
+                pickle.dump(model, f)
+                
             return self.model
         except Exception as err:
             print(err)

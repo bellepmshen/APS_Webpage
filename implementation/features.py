@@ -1,3 +1,4 @@
+import pickle
 import pandas as pd
 import statsmodels.api as sm
 from sklearn.preprocessing import MinMaxScaler
@@ -19,7 +20,7 @@ class Feature_Selection:
         
         self.path = path
         self.filename = filename
-    
+  
     def read_files(self):
         """reading files
 
@@ -112,6 +113,11 @@ class Feature_Selection:
             
             self.cat_cols = cat_cols
             self.nu_cols = nu_cols
+            
+            #save cat_cols:
+            
+            with open('cat_cols', 'ab') as f:
+                pickle.dump(cat_cols, f)
             
             return self.cat_cols, self.nu_cols
         

@@ -1,3 +1,4 @@
+import pandas as pd
 from features import Feature_Selection
 from tree_models import (
     Tree_Model_Prep, Gradient_Boosting_Model,
@@ -64,7 +65,7 @@ def data_prep_logistic(data, main_cols, cat_cols, candidate_cols_new):
         train_dummies, test_dummies = prep.OneHotEncoding()
         train_combined_1, test_combined_1 = prep.merge_scaled_df()
         
-        return train_combined_1, test_combined_1
+        return train_combined_1, test_combined_1, train_dummies
     
     except Exception as err:
         print(err)
@@ -227,13 +228,14 @@ def build_random_forest_model(train_dummies_1, test_dummies_1, data):
     except Exception as err:
         print(err)
 
+
 if __name__ == '__main__':
 
     # feature selection:
     data, main_cols, cat_cols, candidate_cols_new = features_defined()
     
     # logistic regression model:
-    train_combined_1, test_combined_1 = data_prep_logistic(
+    train_combined_1, test_combined_1, train_dummies = data_prep_logistic(
         data, main_cols, cat_cols, candidate_cols_new
         )
     lg_model, lg_pred, lg_pred_prob = build_logistic_model(

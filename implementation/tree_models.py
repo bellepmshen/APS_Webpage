@@ -1,3 +1,4 @@
+import pickle
 import pandas as pd
 from features import Feature_Selection
 import xgboost as xgb
@@ -174,6 +175,10 @@ class Gradient_Boosting_Model:
             trained gradient boosting tree model
         """
         try:
+            # save train_dummies feature names for actual test data alignment:
+            with open('train_dummies_4.pickle', 'ab') as f:
+                pickle.dump(self.xtrain.columns, f)
+            
             model = xgb.XGBClassifier(
                 random_state = 42, learning_rate = .3, max_depth = 9, 
                 colsample_bytree = 0.7, gamma = 0.0, min_child_weight = 3,
@@ -181,8 +186,13 @@ class Gradient_Boosting_Model:
             )
             model.fit(self.xtrain, self.ytrain)
             
-            self.model = model
+            #save model as a pickle:
+            with open('gb_model_3.pickle', 'ab') as f:
+                pickle.dump(model, f)
             
+            self.model = model
+        
+                
             return self.model
         
         except Exception as err:
@@ -275,6 +285,10 @@ class Random_Forest_Model(Gradient_Boosting_Model):
             model.fit(self.xtrain, self.ytrain)
             
             self.model = model
+            
+            #save model as a pickle:
+            with open('rf_model_1.pickle', 'ab') as f:
+                pickle.dump(model, f)
             
             return self.model
         
